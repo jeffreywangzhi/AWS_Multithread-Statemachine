@@ -1,0 +1,158 @@
+{
+  "Comment": "A Hello World example of the Amazon States Language using Pass states",
+  "StartAt": "init statemachine",
+  "States": {
+    "init statemachine": {
+      "Type": "Task",
+      "Resource": "arn:aws:lambda:us-east-1:242130168559:function:initStepFunction",
+      "ResultPath": "$.iterator",
+      "Next": "Iterator"
+    },
+    "Iterator": {
+      "Type": "Task",
+      "Resource": "arn:aws:lambda:us-east-1:242130168559:function:IteratorFunction",
+      "ResultPath": "$.iterator",
+      "Next": "IsCountReached"
+    },
+    "IsCountReached": {
+      "Type": "Choice",
+      "Choices": [
+        {
+          "Variable": "$.iterator.continue",
+          "BooleanEquals": true,
+          "Next": "HTTP Request Size"
+        }
+      ],
+      "Default": "Done"
+    },
+    "HTTP Request Size": {
+      "Type": "Task",
+      "Resource": "arn:aws:lambda:us-east-1:242130168559:function:0817FanoutFunction",
+      "Next": "Divide into parts"
+    },
+    "Divide into parts": {
+      "Type": "Task",
+      "Resource": "arn:aws:lambda:us-east-1:242130168559:function:0817UploadS3",
+      "Next": "Start Branch"
+    },
+    "Start Branch": {
+      "Type": "Parallel",
+      "Next": "Merge File",
+      "ResultPath": "$",
+      "Branches": [
+        {
+          "StartAt": "Download Part1",
+          "States": {
+            "Download Part1": {
+              "Type": "Task",
+              "ResultPath": "$",
+              "OutputPath": "$",
+              "Resource": "arn:aws:lambda:us-east-1:242130168559:function:multipartDownloadP1",
+              "End": true
+            }
+          }
+        },
+        {
+          "StartAt": "Download Part2",
+          "States": {
+            "Download Part2": {
+              "Type": "Task",
+              "Resource": "arn:aws:lambda:us-east-1:242130168559:function:multipartDownloadP2",
+              "End": true
+            }
+          }
+        },
+        {
+          "StartAt": "Download Part3",
+          "States": {
+            "Download Part3": {
+              "Type": "Task",
+              "Resource": "arn:aws:lambda:us-east-1:242130168559:function:multipartDownloadP3",
+              "End": true
+            }
+          }
+        },
+        {
+          "StartAt": "Download Part4",
+          "States": {
+            "Download Part4": {
+              "Type": "Task",
+              "Resource": "arn:aws:lambda:us-east-1:242130168559:function:multipartDownloadP4",
+              "End": true
+            }
+          }
+        },
+        {
+          "StartAt": "Download Part5",
+          "States": {
+            "Download Part5": {
+              "Type": "Task",
+              "Resource": "arn:aws:lambda:us-east-1:242130168559:function:multipartDownloadP5",
+              "End": true
+            }
+          }
+        },
+        {
+          "StartAt": "Download Part6",
+          "States": {
+            "Download Part6": {
+              "Type": "Task",
+              "Resource": "arn:aws:lambda:us-east-1:242130168559:function:multipartDownloadP6",
+              "End": true
+            }
+          }
+        },
+        {
+          "StartAt": "Download Part7",
+          "States": {
+            "Download Part7": {
+              "Type": "Task",
+              "Resource": "arn:aws:lambda:us-east-1:242130168559:function:multipartDownloadP7",
+              "End": true
+            }
+          }
+        },
+        {
+          "StartAt": "Download Part8",
+          "States": {
+            "Download Part8": {
+              "Type": "Task",
+              "Resource": "arn:aws:lambda:us-east-1:242130168559:function:multipartDownloadP8",
+              "End": true
+            }
+          }
+        },
+        {
+          "StartAt": "Download Part9",
+          "States": {
+            "Download Part9": {
+              "Type": "Task",
+              "Resource": "arn:aws:lambda:us-east-1:242130168559:function:multipartDownloadP9",
+              "End": true
+            }
+          }
+        },
+        {
+          "StartAt": "Download Part10",
+          "States": {
+            "Download Part10": {
+              "Type": "Task",
+              "Resource": "arn:aws:lambda:us-east-1:242130168559:function:multipartDownloadP10",
+              "End": true
+            }
+          }
+        }
+      ]
+    },
+    "Merge File": {
+      "Type": "Task",
+      "InputPath": "$",
+      "Resource": "arn:aws:lambda:us-east-1:242130168559:function:multipartMerge",
+      "Next": "Iterator"
+    },
+    "Done": {
+      "Type": "Pass",
+      "End": true
+    }
+  }
+}
