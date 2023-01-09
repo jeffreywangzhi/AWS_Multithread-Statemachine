@@ -1,0 +1,148 @@
+#TEMPLATE TBC
+
+
+# AWSTemplateFormatVersion: "2010-09-09"
+# Transform: AWS::Serverless-2016-10-31
+# Description: >
+#   sam-app2
+
+#   Sample SAM Template for sam-app2
+
+# Resources:
+#   MyTestMachine:
+#     Type: AWS::Serverless::StateMachine # More info about State Machine Resource: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-statemachine.html
+#     Properties:
+#       DefinitionUri: statemachine/samapp3.json
+#       DefinitionSubstitutions:
+#         AssignCaseFunctionArn: !GetAtt AssignCaseFunction.Arn
+#         OpenCaseFunctionArn: !GetAtt OpenCaseFunction.Arn
+#         WorkOnCaseFunctionArn: !GetAtt WorkOnCaseFunction.Arn
+#         CloseCaseFunctionArn: !GetAtt CloseCaseFunction.Arn
+#         EscalateCaseFunctionArn: !GetAtt EscalateCaseFunction.Arn
+#         buildQueue: !Ref BatchJobQue
+#         buildEnv: !Ref OperateBatchEnv
+#         buildDef: !Ref BatchJobDef
+#       Policies:
+#         - "CloudWatchEventsFullAccess"
+#         - "AWSBatchServiceRole"
+#         - "AWSBatchFullAccess"
+#         - "AWSLambdaRole"
+#         - "CloudWatchFullAccess"
+#         - "AmazonDynamoDBFullAccess"
+#         - "CloudWatchLogsFullAccess"
+#         - "AmazonElasticFileSystemFullAccess"
+#         - LambdaInvokePolicy:
+#             FunctionName: !Ref AssignCaseFunction
+#         - LambdaInvokePolicy:
+#             FunctionName: !Ref OpenCaseFunction
+#         - LambdaInvokePolicy:
+#             FunctionName: !Ref WorkOnCaseFunction
+#         - LambdaInvokePolicy:
+#             FunctionName: !Ref CloseCaseFunction
+#         - LambdaInvokePolicy:
+#             FunctionName: !Ref EscalateCaseFunction
+#         # - DynamoDBWritePolicy:
+#         #     TableName: !Ref TransactionTable
+
+#   OperateBatchEnv:
+#     Type: AWS::Batch::ComputeEnvironment
+#     Properties:
+#       Type: MANAGED
+#       ServiceRole: arn:aws:iam::242130168559:role/aws-service-role/batch.amazonaws.com/AWSServiceRoleForBatch
+#       ComputeEnvironmentName: default2
+#       ReplaceComputeEnvironment: true
+#       ComputeResources:
+#         MaxvCpus: 128
+#         SecurityGroupIds:
+#           - sg-cf47e2ba
+#         Type: EC2
+#         Subnets:
+#           - subnet-05942d3a
+#           - subnet-ca868ac6
+#           - subnet-934b82ce
+#           - subnet-8930e4a6
+#           - subnet-6cf09708
+#           - subnet-383fae73
+#         MinvCpus: 0
+#         InstanceRole: ecsInstanceRole
+#         InstanceTypes:
+#           - optimal
+#       State: ENABLED
+
+#   BatchJobDef:
+#     Type: AWS::Batch::JobDefinition
+#     Properties:
+#       Type: container
+#       JobDefinitionName: job2
+#       # PlatformCapabilities:
+#       #   - FARGATE
+#       ContainerProperties:
+#         Memory: 2048
+#         Vcpus: 1
+#         Image: public.ecr.aws/amazonlinux/amazonlinux:latest
+#         Command: 
+#           - "echo"
+#           - $.param
+#         ExecutionRoleArn: !GetAtt MyTestMachineRole.Arn
+
+#   BatchJobQue:
+#     Type: AWS::Batch::JobQueue
+#     Properties: 
+#       ComputeEnvironmentOrder: 
+#         - Order: 1
+#           ComputeEnvironment: default2
+#       JobQueueName: defaultQ2
+#       Priority: 1
+#       State: ENABLED
+
+#   AssignCaseFunction:
+#     Type: AWS::Serverless::Function # More info about Function Resource: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-function.html
+#     Properties:
+#       CodeUri: functions/AssignCaseFunction/
+#       Handler: app.lambdaHandler
+#       Runtime: nodejs16.x
+#       Architectures:
+#         - x86_64
+#   OpenCaseFunction:
+#     Type: AWS::Serverless::Function # More info about Function Resource: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-function.html
+#     Properties:
+#       CodeUri: functions/OpenCaseFunction/
+#       Handler: app.lambdaHandler
+#       Runtime: nodejs16.x
+#       Architectures:
+#         - x86_64
+#   WorkOnCaseFunction:
+#     Type: AWS::Serverless::Function # More info about Function Resource: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-function.html
+#     Properties:
+#       CodeUri: functions/WorkOnCaseFunction/
+#       Handler: app.lambdaHandler
+#       Runtime: nodejs16.x
+#       Architectures:
+#         - x86_64
+#   CloseCaseFunction:
+#     Type: AWS::Serverless::Function # More info about Function Resource: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-function.html
+#     Properties:
+#       CodeUri: functions/CloseCaseFunction/
+#       Handler: app.lambdaHandler
+#       Runtime: nodejs16.x
+#       Architectures:
+#         - x86_64
+#   EscalateCaseFunction:
+#     Type: AWS::Serverless::Function # More info about Function Resource: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-function.html
+#     Properties:
+#       CodeUri: functions/EscalateCaseFunction/
+#       Handler: app.lambdaHandler
+#       Runtime: nodejs16.x
+#       Architectures:
+#         - x86_64
+
+# Outputs:
+#   # StockTradingStateMachineHourlyTradingSchedule is an implicit Schedule event rule created out of Events key under Serverless::StateMachine
+#   # Find out more about other implicit resources you can reference within SAM
+#   # https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-specification-generated-resources.html
+#   MyTestMachineArn:
+#     Description: "MyTestMachine ARN"
+#     Value: !Ref MyTestMachine
+#   MyTestMachineRole:
+#     Description: "IAM Role created for Stock Trading state machine based on the specified SAM Policy Templates"
+#     Value: !GetAtt MyTestMachineRole.Arn
