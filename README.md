@@ -5,7 +5,7 @@ A fast, efficient, multithreaded download machine based on AWS.
 3. Job finished.
 * Average System Efficiency: **1.5 GB/ second**
 * Scalability: scalable with additional threads (lambda function)
-![stepfunctions_graph.png](stepfunctions_graph.png)
+![stepfunctions_graph.png](statemachine_src/stepfunctions_graph.png)
 ### Input Format
 ```json
 {
