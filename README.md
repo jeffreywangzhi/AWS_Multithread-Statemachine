@@ -6,6 +6,19 @@ A fast, efficient, multithreaded download machine based on AWS.
 * Average System Efficiency: **1.5 GB/ second**
 * Scalability: scalable with additional threads (lambda function)
 ![stepfunctions_graph.png](stepfunctions_graph.png)
+### Input Format
+```json
+{
+  "src": [
+    {
+      "filePath": "https://targetFile1.mkv"
+    },
+    {
+      "filePath": "https://targetFile2.mkv"
+    },
+  ]
+}
+```
 ## Author <a name = "author"></a>
 - Jeffrey Wang (jeffrey.wanggg@gmail.com)
 
