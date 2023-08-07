@@ -17,7 +17,7 @@ A fast, efficient, multithreaded download machine based on AWS.
       "filePath": "https://targetFile2.mkv"
     },
     {
-      ...
+      "filePath": "{other-file-paths}"
     }
   ]
 }
