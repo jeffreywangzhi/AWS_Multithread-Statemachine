@@ -22,6 +22,6 @@ A fast, efficient, multithreaded download machine based on AWS.
   ]
 }
 ```
-## Author <a name = "author"></a>
+## Who do I talk to <a name = "author"></a>
 - Jeffrey Wang (jeffrey.wanggg@gmail.com)
 
