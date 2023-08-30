@@ -45,7 +45,7 @@
 #     Type: AWS::Batch::ComputeEnvironment
 #     Properties:
 #       Type: MANAGED
-#       ServiceRole: arn:aws:iam::242130168559:role/aws-service-role/batch.amazonaws.com/AWSServiceRoleForBatch
+#       ServiceRole: arn:aws:iam::aws-account:role/aws-service-role/batch.amazonaws.com/AWSServiceRoleForBatch
 #       ComputeEnvironmentName: default2
 #       ReplaceComputeEnvironment: true
 #       ComputeResources:
