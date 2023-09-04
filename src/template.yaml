@@ -1,9 +1,9 @@
 #TEMPLATE TBC
 
 
-# AWSTemplateFormatVersion: "2010-09-09"
-# Transform: AWS::Serverless-2016-10-31
-# Description: AWS Multithreaded StateMachine
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: AWS Multithreaded StateMachine
 
 # Resources:
 #   MyTestMachine:
