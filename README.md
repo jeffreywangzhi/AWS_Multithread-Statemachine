@@ -4,7 +4,7 @@ A fast, efficient, multithreaded download statemachine based on AWS.
 2. 10 threads upload respective chunks to the target S3 bucket.
 3. Job finished.
 * Average System Efficiency: **1.5 GB/ second**
-* Scalability: scalable with additional threads (lambda functions)
+* Scalability: scalable with additional threads (lambda functions
 ![statemachine_graph.png](src/statemachine_graph.png)
 ### Input Format
 ```json
