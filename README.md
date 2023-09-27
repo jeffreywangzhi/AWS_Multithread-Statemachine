@@ -11,7 +11,7 @@ A fast, efficient, multithreaded download statemachine based on AWS.
 {
   "src": [
     {
-      "filePath": "https://targetFile1.mkv
+      "filePath": "https://targetFile1.mkv"
     },
     {
       "filePath": "https://targetFile2.mkv"
