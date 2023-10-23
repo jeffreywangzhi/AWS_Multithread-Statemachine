@@ -12,13 +12,6 @@ Resources:
       DefinitionUri: statemachine/multithread_statemachine.json
       DefinitionSubstitutions:
         AssignCaseFunctionArn: !GetAtt AssignCaseFunction.Arn
-        OpenCaseFunctionArn: !GetAtt OpenCaseFunction.Arn
-        WorkOnCaseFunctionArn: !GetAtt WorkOnCaseFunction.Arn
-        CloseCaseFunctionArn: !GetAtt CloseCaseFunction.Arn
-        EscalateCaseFunctionArn: !GetAtt EscalateCaseFunction.Arn
-        buildQueue: !Ref BatchJobQue
-        buildEnv: !Ref OperateBatchEnv
-        buildDef: !Ref BatchJobDef
 #       Policies:
 #         - "CloudWatchEventsFullAccess"
 #         - "AWSBatchServiceRole"
