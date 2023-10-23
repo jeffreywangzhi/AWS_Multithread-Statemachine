@@ -133,13 +133,12 @@ Description: AWS Multithreaded Download StateMachine
 #       Architectures:
 #         - x86_64
 
-# Outputs:
-#   # StockTradingStateMachineHourlyTradingSchedule is an implicit Schedule event rule created out of Events key under Serverless::StateMachine
-#   # Find out more about other implicit resources you can reference within SAM
-#   # https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-specification-generated-resources.html
-#   MyTestMachineArn:
-#     Description: "MyTestMachine ARN"
-#     Value: !Ref MyTestMachine
-#   MyTestMachineRole:
-#     Description: "IAM Role created for Stock Trading state machine based on the specified SAM Policy Templates"
-#     Value: !GetAtt MyTestMachineRole.Arn
+Outputs:
+  # Find out more about other implicit resources you can reference within SAM
+  # https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-specification-generated-resources.html
+  MyTestMachineArn:
+    Description: "MyTestMachine ARN"
+    Value: !Ref MyTestMachine
+  MyTestMachineRole:
+    Description: "IAM Role created for Stock Trading state machine based on the specified SAM Policy Templates"
+    Value: !GetAtt MyTestMachineRole.Arn
