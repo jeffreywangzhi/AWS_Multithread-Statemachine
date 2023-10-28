@@ -18,18 +18,18 @@ Resources:
         - "AmazonDynamoDBFullAccess"
         - "CloudWatchLogsFullAccess"
         - "AmazonElasticFileSystemFullAccess"
-#         - LambdaInvokePolicy:
-#             FunctionName: !Ref AssignCaseFunction
-#         - LambdaInvokePolicy:
-#             FunctionName: !Ref OpenCaseFunction
-#         - LambdaInvokePolicy:
-#             FunctionName: !Ref WorkOnCaseFunction
-#         - LambdaInvokePolicy:
-#             FunctionName: !Ref CloseCaseFunction
-#         - LambdaInvokePolicy:
-#             FunctionName: !Ref EscalateCaseFunction
-#         # - DynamoDBWritePolicy:
-#         #     TableName: !Ref TransactionTable
+        - LambdaInvokePolicy:
+            FunctionName: !Ref AssignCaseFunction
+        - LambdaInvokePolicy:
+            FunctionName: !Ref OpenCaseFunction
+        - LambdaInvokePolicy:
+            FunctionName: !Ref WorkOnCaseFunction
+        - LambdaInvokePolicy:
+            FunctionName: !Ref CloseCaseFunction
+        - LambdaInvokePolicy:
+            FunctionName: !Ref EscalateCaseFunction
+        # - DynamoDBWritePolicy:
+        #     TableName: !Ref TransactionTable
 
 #   OperateBatchEnv:
 #     Type: AWS::Batch::ComputeEnvironment
