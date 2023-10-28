@@ -9,7 +9,7 @@ Resources:
       DefinitionUri: statemachine/multithread_statemachine.json
       DefinitionSubstitutions:
         AssignCaseFunctionArn: !GetAtt AssignCaseFunction.Arn
-#       Policies:
+       Policies:
 #         - "CloudWatchEventsFullAccess"
 #         - "AWSBatchServiceRole"
 #         - "AWSBatchFullAccess"
