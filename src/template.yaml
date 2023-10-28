@@ -10,14 +10,14 @@ Resources:
       DefinitionSubstitutions:
         AssignCaseFunctionArn: !GetAtt AssignCaseFunction.Arn
        Policies:
-#         - "CloudWatchEventsFullAccess"
-#         - "AWSBatchServiceRole"
-#         - "AWSBatchFullAccess"
-#         - "AWSLambdaRole"
-#         - "CloudWatchFullAccess"
-#         - "AmazonDynamoDBFullAccess"
-#         - "CloudWatchLogsFullAccess"
-#         - "AmazonElasticFileSystemFullAccess"
+        - "CloudWatchEventsFullAccess"
+        - "AWSBatchServiceRole"
+        - "AWSBatchFullAccess"
+        - "AWSLambdaRole"
+        - "CloudWatchFullAccess"
+        - "AmazonDynamoDBFullAccess"
+        - "CloudWatchLogsFullAccess"
+        - "AmazonElasticFileSystemFullAccess"
 #         - LambdaInvokePolicy:
 #             FunctionName: !Ref AssignCaseFunction
 #         - LambdaInvokePolicy:
