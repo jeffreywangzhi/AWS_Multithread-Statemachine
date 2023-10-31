@@ -31,31 +31,6 @@ Resources:
         - DynamoDBWritePolicy:
             TableName: !Ref TransactionTable
 
-#   OperateBatchEnv:
-#     Type: AWS::Batch::ComputeEnvironment
-#     Properties:
-#       Type: MANAGED
-#       ServiceRole: arn:aws:iam::aws-account:role/aws-service-role/batch.amazonaws.com/AWSServiceRoleForBatch
-#       ComputeEnvironmentName: default2
-#       ReplaceComputeEnvironment: true
-#       ComputeResources:
-#         MaxvCpus: 128
-#         SecurityGroupIds:
-#           - sg-cf47e2ba
-#         Type: EC2
-#         Subnets:
-#           - subnet-05942d3a
-#           - subnet-ca868ac6
-#           - subnet-934b82ce
-#           - subnet-8930e4a6
-#           - subnet-6cf09708
-#           - subnet-383fae73
-#         MinvCpus: 0
-#         InstanceRole: ecsInstanceRole
-#         InstanceTypes:
-#           - optimal
-#       State: ENABLED
-
 #   BatchJobDef:
 #     Type: AWS::Batch::JobDefinition
 #     Properties:
