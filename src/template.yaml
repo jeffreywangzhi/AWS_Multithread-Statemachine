@@ -39,14 +39,14 @@ Resources:
       Runtime: nodejs16.x
       Architectures:
         - x86_64
-#   OpenCaseFunction:
-#     Type: AWS::Serverless::Function # More info about Function Resource: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-function.html
-#     Properties:
-#       CodeUri: functions/OpenCaseFunction/
-#       Handler: app.lambdaHandler
-#       Runtime: nodejs16.x
-#       Architectures:
-#         - x86_64
+  OpenCaseFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-function.html
+    Properties:
+      CodeUri: functions/OpenCaseFunction/
+      Handler: app.lambdaHandler
+      Runtime: nodejs16.x
+      Architectures:
+        - x86_64
 #   WorkOnCaseFunction:
 #     Type: AWS::Serverless::Function # More info about Function Resource: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-function.html
 #     Properties:
