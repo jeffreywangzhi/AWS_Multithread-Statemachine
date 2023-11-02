@@ -55,14 +55,14 @@ Resources:
       Runtime: nodejs16.x
       Architectures:
         - x86_64
-  # CloseCaseFunction:
-#     Type: AWS::Serverless::Function # More info about Function Resource: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-function.html
-#     Properties:
-#       CodeUri: functions/CloseCaseFunction/
-#       Handler: app.lambdaHandler
-#       Runtime: nodejs16.x
-#       Architectures:
-#         - x86_64
+  CloseCaseFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-function.html
+    Properties:
+      CodeUri: functions/CloseCaseFunction/
+      Handler: app.lambdaHandler
+      Runtime: nodejs16.x
+      Architectures:
+        - x86_64
 #   EscalateCaseFunction:
 #     Type: AWS::Serverless::Function # More info about Function Resource: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-function.html
 #     Properties:
