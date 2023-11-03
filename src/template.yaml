@@ -31,53 +31,53 @@ Resources:
         - DynamoDBWritePolicy:
             TableName: !Ref TransactionTable
 
-  AssignCaseFunction:
-    Type: AWS::Serverless::Function # More info about Function Resource: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-function.html
-    Properties:
-      CodeUri: functions/AssignCaseFunction/
-      Handler: app.lambdaHandler
-      Runtime: nodejs16.x
-      Architectures:
-        - x86_64
-  OpenCaseFunction:
-    Type: AWS::Serverless::Function # More info about Function Resource: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-function.html
-    Properties:
-      CodeUri: functions/OpenCaseFunction/
-      Handler: app.lambdaHandler
-      Runtime: nodejs16.x
-      Architectures:
-        - x86_64
-  WorkOnCaseFunction:
-    Type: AWS::Serverless::Function # More info about Function Resource: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-function.html
-    Properties:
-      CodeUri: functions/WorkOnCaseFunction/
-      Handler: app.lambdaHandler
-      Runtime: nodejs16.x
-      Architectures:
-        - x86_64
-  CloseCaseFunction:
-    Type: AWS::Serverless::Function # More info about Function Resource: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-function.html
-    Properties:
-      CodeUri: functions/CloseCaseFunction/
-      Handler: app.lambdaHandler
-      Runtime: nodejs16.x
-      Architectures:
-        - x86_64
-  EscalateCaseFunction:
-    Type: AWS::Serverless::Function # More info about Function Resource: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-function.html
-    Properties:
-      CodeUri: functions/EscalateCaseFunction/
-      Handler: app.lambdaHandler
-      Runtime: nodejs16.x
-      Architectures:
-        - x86_64
+#   AssignCaseFunction:
+#     Type: AWS::Serverless::Function # More info about Function Resource: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-function.html
+#     Properties:
+#       CodeUri: functions/AssignCaseFunction/
+#       Handler: app.lambdaHandler
+#       Runtime: nodejs16.x
+#       Architectures:
+#         - x86_64
+#   OpenCaseFunction:
+#     Type: AWS::Serverless::Function # More info about Function Resource: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-function.html
+#     Properties:
+#       CodeUri: functions/OpenCaseFunction/
+#       Handler: app.lambdaHandler
+#       Runtime: nodejs16.x
+#       Architectures:
+#         - x86_64
+#   WorkOnCaseFunction:
+#     Type: AWS::Serverless::Function # More info about Function Resource: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-function.html
+#     Properties:
+#       CodeUri: functions/WorkOnCaseFunction/
+#       Handler: app.lambdaHandler
+#       Runtime: nodejs16.x
+#       Architectures:
+#         - x86_64
+#   CloseCaseFunction:
+#     Type: AWS::Serverless::Function # More info about Function Resource: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-function.html
+#     Properties:
+#       CodeUri: functions/CloseCaseFunction/
+#       Handler: app.lambdaHandler
+#       Runtime: nodejs16.x
+#       Architectures:
+#         - x86_64
+#   EscalateCaseFunction:
+#     Type: AWS::Serverless::Function # More info about Function Resource: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-function.html
+#     Properties:
+#       CodeUri: functions/EscalateCaseFunction/
+#       Handler: app.lambdaHandler
+#       Runtime: nodejs16.x
+#       Architectures:
+#         - x86_64
 
-Outputs:
-  # Find out more about other implicit resources you can reference within SAM
-  # https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-specification-generated-resources.html
-  MyTestMachineArn:
-    Description: "MyTestMachine ARN"
-    Value: !Ref MyTestMachine
-  MyTestMachineRole:
-    Description: "IAM Role created for Stock Trading state machine based on the specified SAM Policy Templates"
-    Value: !GetAtt MyTestMachineRole.Arn
+# Outputs:
+#   # Find out more about other implicit resources you can reference within SAM
+#   # https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-specification-generated-resources.html
+#   MyTestMachineArn:
+#     Description: "MyTestMachine ARN"
+#     Value: !Ref MyTestMachine
+#   MyTestMachineRole:
+#     Description: "IAM Role created for Stock Trading state machine based on the specified SAM Policy Templates"
+#     Value: !GetAtt MyTestMachineRole.Arn
