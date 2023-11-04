@@ -16,12 +16,12 @@ Resources:
         - "AWSLambdaRole"
         - "CloudWatchFullAccess"
         - "AmazonDynamoDBFullAccess"
-        # - "CloudWatchLogsFullAccess"
-        # - "AmazonElasticFileSystemFullAccess"
-        # - LambdaInvokePolicy:
-        #     FunctionName: !Ref AssignCaseFunction
-        # - LambdaInvokePolicy:
-        #     FunctionName: !Ref OpenCaseFunction
+        - "CloudWatchLogsFullAccess"
+        - "AmazonElasticFileSystemFullAccess"
+        - LambdaInvokePolicy:
+            FunctionName: !Ref AssignCaseFunction
+        - LambdaInvokePolicy:
+            FunctionName: !Ref OpenCaseFunction
         # - LambdaInvokePolicy:
         #     FunctionName: !Ref WorkOnCaseFunction
         # - LambdaInvokePolicy:
