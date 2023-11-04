@@ -22,10 +22,10 @@ Resources:
             FunctionName: !Ref AssignCaseFunction
         - LambdaInvokePolicy:
             FunctionName: !Ref OpenCaseFunction
-        # - LambdaInvokePolicy:
-        #     FunctionName: !Ref WorkOnCaseFunction
-        # - LambdaInvokePolicy:
-        #     FunctionName: !Ref CloseCaseFunction
+        - LambdaInvokePolicy:
+            FunctionName: !Ref WorkOnCaseFunction
+        - LambdaInvokePolicy:
+            FunctionName: !Ref CloseCaseFunction
         # - LambdaInvokePolicy:
         #     FunctionName: !Ref EscalateCaseFunction
         # - DynamoDBWritePolicy:
