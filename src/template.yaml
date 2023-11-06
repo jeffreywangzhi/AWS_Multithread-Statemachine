@@ -26,8 +26,8 @@ Resources:
             FunctionName: !Ref WorkOnCaseFunction
         - LambdaInvokePolicy:
             FunctionName: !Ref CloseCaseFunction
-        # - LambdaInvokePolicy:
-        #     FunctionName: !Ref EscalateCaseFunction
+        - LambdaInvokePolicy:
+            FunctionName: !Ref EscalateCaseFunction
         # - DynamoDBWritePolicy:
         #     TableName: !Ref TransactionTable
 
