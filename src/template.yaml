@@ -28,8 +28,8 @@ Resources:
             FunctionName: !Ref CloseCaseFunction
         - LambdaInvokePolicy:
             FunctionName: !Ref EscalateCaseFunction
-        # - DynamoDBWritePolicy:
-        #     TableName: !Ref TransactionTable
+        - DynamoDBWritePolicy:
+            TableName: !Ref TransactionTable
 
 #   AssignCaseFunction:
 #     Type: AWS::Serverless::Function # More info about Function Resource: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-function.html
