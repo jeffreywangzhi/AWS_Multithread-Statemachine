@@ -18,18 +18,18 @@ Resources:
         - "AmazonDynamoDBFullAccess"
         - "CloudWatchLogsFullAccess"
         - "AmazonElasticFileSystemFullAccess"
-        - LambdaInvokePolicy:
-            FunctionName: !Ref AssignCaseFunction
-        - LambdaInvokePolicy:
-            FunctionName: !Ref OpenCaseFunction
-        - LambdaInvokePolicy:
-            FunctionName: !Ref WorkOnCaseFunction
-        - LambdaInvokePolicy:
-            FunctionName: !Ref CloseCaseFunction
-        - LambdaInvokePolicy:
-            FunctionName: !Ref EscalateCaseFunction
-        - DynamoDBWritePolicy:
-            TableName: !Ref TransactionTable
+        # - LambdaInvokePolicy:
+        #     FunctionName: !Ref AssignCaseFunction
+        # - LambdaInvokePolicy:
+        #     FunctionName: !Ref OpenCaseFunction
+        # - LambdaInvokePolicy:
+        #     FunctionName: !Ref WorkOnCaseFunction
+        # - LambdaInvokePolicy:
+        #     FunctionName: !Ref CloseCaseFunction
+        # - LambdaInvokePolicy:
+        #     FunctionName: !Ref EscalateCaseFunction
+        # - DynamoDBWritePolicy:
+        #     TableName: !Ref TransactionTable
 
 #   AssignCaseFunction:
 #     Type: AWS::Serverless::Function # More info about Function Resource: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-function.html
