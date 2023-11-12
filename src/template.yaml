@@ -9,15 +9,15 @@ Resources:
       DefinitionUri: statemachine/multithread_statemachine.json
       DefinitionSubstitutions:
         AssignCaseFunctionArn: !GetAtt AssignCaseFunction.Arn
-       Policies:
-        - "CloudWatchEventsFullAccess"
-        - "AWSBatchServiceRole"
-        - "AWSBatchFullAccess"
-        - "AWSLambdaRole"
-        - "CloudWatchFullAccess"
-        - "AmazonDynamoDBFullAccess"
-        - "CloudWatchLogsFullAccess"
-        - "AmazonElasticFileSystemFullAccess"
+       # Policies:
+       #  - "CloudWatchEventsFullAccess"
+       #  - "AWSBatchServiceRole"
+       #  - "AWSBatchFullAccess"
+       #  - "AWSLambdaRole"
+       #  - "CloudWatchFullAccess"
+       #  - "AmazonDynamoDBFullAccess"
+       #  - "CloudWatchLogsFullAccess"
+       #  - "AmazonElasticFileSystemFullAccess"
         # - LambdaInvokePolicy:
         #     FunctionName: !Ref AssignCaseFunction
         # - LambdaInvokePolicy:
