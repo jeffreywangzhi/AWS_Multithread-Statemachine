@@ -1,83 +1,53 @@
-AWSTemplateFormatVersion: "2010-09-09"
+AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
-Description: AWS Multithreaded Download StateMachine
+Description: >
+  multithreaded statemachine serverless app stack
+
+# More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
+# Globals:
+#   Function:
+#     Timeout: 60
 
 Resources:
-  MyTestMachine:
-    Type: AWS::Serverless::StateMachine # More info about State Machine Resource: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-statemachine.html
+# StepFunction
+  StateMachine:
+    Type: AWS::Serverless::StateMachine
     Properties:
+      Name: "Multithreaded Download StateMachine"
+      Role: arn:aws:iam::aws-account:role/service-role/StepFunctions-aemass-qe-prod-main-workflow-role-87643d68
       DefinitionUri: statemachine/multithread_statemachine.json
-      DefinitionSubstitutions:
-        AssignCaseFunctionArn: !GetAtt AssignCaseFunction.Arn
-       # Policies:
-       #  - "CloudWatchEventsFullAccess"
-       #  - "AWSBatchServiceRole"
-       #  - "AWSBatchFullAccess"
-       #  - "AWSLambdaRole"
-       #  - "CloudWatchFullAccess"
-       #  - "AmazonDynamoDBFullAccess"
-       #  - "CloudWatchLogsFullAccess"
-       #  - "AmazonElasticFileSystemFullAccess"
-        # - LambdaInvokePolicy:
-        #     FunctionName: !Ref AssignCaseFunction
-        # - LambdaInvokePolicy:
-        #     FunctionName: !Ref OpenCaseFunction
-        # - LambdaInvokePolicy:
-        #     FunctionName: !Ref WorkOnCaseFunction
-        # - LambdaInvokePolicy:
-        #     FunctionName: !Ref CloseCaseFunction
-        # - LambdaInvokePolicy:
-        #     FunctionName: !Ref EscalateCaseFunction
-        # - DynamoDBWritePolicy:
-        #     TableName: !Ref TransactionTable
+      DefinitionSubstitutions: # variables to pass to statemachine
+        DivideIntoPartsArn: !GetAtt DivideIntoParts.Arn
+        DownloadPartOneArn: !GetAtt DownloadPartOne.Arn
+        DownloadPartTwoArn: !GetAtt DownloadPartTwo.Arn
+        DownloadPartThreeArn: !GetAtt DownloadPartThree.Arn
+        DownloadPartFourArn: !GetAtt DownloadPartFour.Arn
+        DownloadPartFiveArn: !GetAtt DownloadPartFive.Arn
+        DownloadPartSixArn: !GetAtt DownloadPartSix.Arn
+        DownloadPartSevenArn: !GetAtt DownloadPartSeven.Arn
+        DownloadPartEightArn: !GetAtt DownloadPartEight.Arn
+        DownloadPartNineArn: !GetAtt DownloadPartNine.Arn
+        DownloadPartTenArn: !GetAtt DownloadPartTen.Arn
+        HttpRequestSizeArn: !GetAtt HttpRequestSize.Arn
+        InitStatemachineArn: !GetAtt InitStatemachine.Arn
+        IteratorArn: !GetAtt Iterator.Arn
+        MergeFileArn: !GetAtt MergeFile.Arn
 
-#   AssignCaseFunction:
-#     Type: AWS::Serverless::Function # More info about Function Resource: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-function.html
-#     Properties:
-#       CodeUri: functions/AssignCaseFunction/
-#       Handler: app.lambdaHandler
-#       Runtime: nodejs16.x
-#       Architectures:
-#         - x86_64
-#   OpenCaseFunction:
-#     Type: AWS::Serverless::Function # More info about Function Resource: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-function.html
-#     Properties:
-#       CodeUri: functions/OpenCaseFunction/
-#       Handler: app.lambdaHandler
-#       Runtime: nodejs16.x
-#       Architectures:
-#         - x86_64
-#   WorkOnCaseFunction:
-#     Type: AWS::Serverless::Function # More info about Function Resource: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-function.html
-#     Properties:
-#       CodeUri: functions/WorkOnCaseFunction/
-#       Handler: app.lambdaHandler
-#       Runtime: nodejs16.x
-#       Architectures:
-#         - x86_64
-#   CloseCaseFunction:
-#     Type: AWS::Serverless::Function # More info about Function Resource: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-function.html
-#     Properties:
-#       CodeUri: functions/CloseCaseFunction/
-#       Handler: app.lambdaHandler
-#       Runtime: nodejs16.x
-#       Architectures:
-#         - x86_64
-#   EscalateCaseFunction:
-#     Type: AWS::Serverless::Function # More info about Function Resource: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-function.html
-#     Properties:
-#       CodeUri: functions/EscalateCaseFunction/
-#       Handler: app.lambdaHandler
-#       Runtime: nodejs16.x
-#       Architectures:
-#         - x86_64
-
-# Outputs:
-#   # Find out more about other implicit resources you can reference within SAM
-#   # https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-specification-generated-resources.html
-#   MyTestMachineArn:
-#     Description: "MyTestMachine ARN"
-#     Value: !Ref MyTestMachine
-#   MyTestMachineRole:
-#     Description: "IAM Role created for Stock Trading state machine based on the specified SAM Policy Templates"
-#     Value: !GetAtt MyTestMachineRole.Arn
+# Lambda
+  DivideIntoParts:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: DivideIntoParts
+      Role: arn:aws:iam::aws-account:role/aemass-qe-prod-lambda-basic-role
+      CodeUri: functions/Divide-into-parts/
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.8
+      MemorySize: 10240
+      EphemeralStorage:
+        Size: 2048
+      Timeout: 900
+      Architectures:
+        - x86_64
+      Layers:
+        # cloud watch insight
+        - "arn:aws:lambda:us-east-1:aws-account:layer:pandas-layer:2"
