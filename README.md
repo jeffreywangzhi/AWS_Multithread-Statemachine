@@ -5,16 +5,16 @@ A fast, efficient, multithreaded download statemachine based on AWS.
 3. Job finished.
 * Average System Efficiency: **5 GB/ second**
 * Scalability: scalable with additional threads (lambda functions)
-![statemachine_graph.png](src/statemachine_graph.png)
+![statemachine_graph.png](src/statemachine/statemachine_graph.png)
 ### Input Format
 ```json
 {
   "src": [
     {
-      "filePath": "https://targetFile1.mkv"
+      "filePath": "https://targetFile1.type"
     },
     {
-      "filePath": "https://targetFile2.mkv"
+      "filePath": "https://targetFile2.type"
     },
     {
       "filePath": "{other-file-paths}"
