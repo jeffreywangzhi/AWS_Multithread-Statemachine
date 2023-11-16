@@ -4,7 +4,6 @@ Description: >
   multithreaded statemachine serverless app stack
 
 Resources:
-# StepFunction
   StateMachine:
     Type: AWS::Serverless::StateMachine
     Properties:
