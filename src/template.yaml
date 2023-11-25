@@ -42,6 +42,6 @@ Resources:
       Timeout: 900
       Architectures:
         - x86_64
-      # Layers:
-      #   # cloud watch insight
-      #   - "arn:aws:lambda:us-east-1:aws-account:layer:pandas-layer:2"
+      Layers:
+        # cloud watch insight
+        - "arn:aws:lambda:us-east-1:aws-account:layer:pandas-layer:2"
