@@ -4,13 +4,13 @@
   "States": {
     "init statemachine": {
       "Type": "Task",
-      "Resource": "arn:aws:lambda:us-east-1:aws-account:function:initStepFunction",
+      "Resource": "${InitStatemachineArn}",
       "ResultPath": "$.iterator",
       "Next": "Iterator"
     },
     "Iterator": {
       "Type": "Task",
-      "Resource": "arn:aws:lambda:us-east-1:aws-account:function:IteratorFunction",
+      "Resource": "${IteratorArn}",
       "ResultPath": "$.iterator",
       "Next": "IsCountReached"
     },
@@ -27,12 +27,12 @@
     },
     "HTTP Request Size": {
       "Type": "Task",
-      "Resource": "arn:aws:lambda:us-east-1:aws-account:function:0817FanoutFunction",
+      "Resource": "${HttpRequestSizeArn}",
       "Next": "Divide into parts"
     },
     "Divide into parts": {
       "Type": "Task",
-      "Resource": "arn:aws:lambda:us-east-1:aws-account:function:0817UploadS3",
+      "Resource": "${DivideIntoPartsArn}",
       "Next": "Start Branch"
     },
     "Start Branch": {
@@ -47,7 +47,7 @@
               "Type": "Task",
               "ResultPath": "$",
               "OutputPath": "$",
-              "Resource": "arn:aws:lambda:us-east-1:aws-account:function:multipartDownloadP1",
+              "Resource": "${DownloadPartOneArn}",
               "End": true
             }
           }
@@ -57,7 +57,7 @@
           "States": {
             "Download Part2": {
               "Type": "Task",
-              "Resource": "arn:aws:lambda:us-east-1:aws-account:function:multipartDownloadP2",
+              "Resource": "${DownloadPartTwoArn}",
               "End": true
             }
           }
@@ -67,7 +67,7 @@
           "States": {
             "Download Part3": {
               "Type": "Task",
-              "Resource": "arn:aws:lambda:us-east-1:aws-account:function:multipartDownloadP3",
+              "Resource": "${DownloadPartThreeArn}",
               "End": true
             }
           }
@@ -77,7 +77,7 @@
           "States": {
             "Download Part4": {
               "Type": "Task",
-              "Resource": "arn:aws:lambda:us-east-1:aws-account:function:multipartDownloadP4",
+              "Resource": "${DownloadPartFourArn}",
               "End": true
             }
           }
@@ -87,7 +87,7 @@
           "States": {
             "Download Part5": {
               "Type": "Task",
-              "Resource": "arn:aws:lambda:us-east-1:aws-account:function:multipartDownloadP5",
+              "Resource": "${DownloadPartFiveArn}",
               "End": true
             }
           }
@@ -97,7 +97,7 @@
           "States": {
             "Download Part6": {
               "Type": "Task",
-              "Resource": "arn:aws:lambda:us-east-1:aws-account:function:multipartDownloadP6",
+              "Resource": "${DownloadPartSixArn}",
               "End": true
             }
           }
@@ -107,7 +107,7 @@
           "States": {
             "Download Part7": {
               "Type": "Task",
-              "Resource": "arn:aws:lambda:us-east-1:aws-account:function:multipartDownloadP7",
+              "Resource": "${DownloadPartSevenArn}",
               "End": true
             }
           }
@@ -117,7 +117,7 @@
           "States": {
             "Download Part8": {
               "Type": "Task",
-              "Resource": "arn:aws:lambda:us-east-1:aws-account:function:multipartDownloadP8",
+              "Resource": "${DownloadPartEightArn}",
               "End": true
             }
           }
@@ -127,7 +127,7 @@
           "States": {
             "Download Part9": {
               "Type": "Task",
-              "Resource": "arn:aws:lambda:us-east-1:aws-account:function:multipartDownloadP9",
+              "Resource": "${DownloadPartNineArn}",
               "End": true
             }
           }
@@ -137,7 +137,7 @@
           "States": {
             "Download Part10": {
               "Type": "Task",
-              "Resource": "arn:aws:lambda:us-east-1:aws-account:function:multipartDownloadP10",
+              "Resource": "${DownloadPartTenArn}",
               "End": true
             }
           }
@@ -147,7 +147,7 @@
     "Merge File": {
       "Type": "Task",
       "InputPath": "$",
-      "Resource": "arn:aws:lambda:us-east-1:aws-account:function:multipartMerge",
+      "Resource": "${MergeFileArn}",
       "Next": "Iterator"
     },
     "Done": {
