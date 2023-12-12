@@ -16,7 +16,6 @@ A fast, efficient, multithreaded download statemachine based on AWS.
 ## Configuration <a name = "config"></a> ##
 
 * Replace each **aws-account** in template.yaml with your own AWS account number. (Ctrl + F, aws-account)
-
 * Config each **Role** in StepFunctions and Lambda Functions and grant corresponding permissions. (Ctrl + F, Role)
 
 ## Building <a name = "build"></a> ##
