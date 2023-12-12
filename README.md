@@ -6,15 +6,41 @@ A fast, efficient, multithreaded download statemachine based on AWS.
 * System Efficiency: **300 GB/ minute**
 * Scalability: scalable with additional threads (AWS Lambda Functions)
 ![statemachine_graph.png](src/statemachine/statemachine_graph.png)
-### Input Format
+
+## Prerequisites <a name = "prerequisites"></a> ##
+
+* Install AWS CLI : [installation guide](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
+* AWS CLI : [installation guide](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
+* AWS Account Credentials : [How to guide](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-envvars.html)
+
+## Configuration <a name = "config"></a> ##
+
+* Replace each **aws-account** in template.yaml with your own AWS account number. (Ctrl + F, aws-account)
+
+* Config each **Role** in StepFunctions and Lambda Functions and grant corresponding permissions. (Ctrl + F, Role)
+
+## Building <a name = "build"></a> ##
+* Build the sam application.
+```bash
+$ sam build
+```
+```bash
+$ sam deploy --guided
+```
+* Enter your target S3 name for storing the downloaded file.
+```bash
+$ Parameter TargetS3 [targetS3]: your-s3-name
+```
+
+## Input Format
 ```json
 {
   "src": [
     {
-      "filePath": "https://targetFile1.type"
+      "filePath": "https://download-file-1.ext"
     },
     {
-      "filePath": "https://targetFile2.type"
+      "filePath": "https://download-file-2.ext"
     },
     {
       "filePath": "{other-file-paths}"
