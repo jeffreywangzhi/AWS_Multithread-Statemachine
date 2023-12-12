@@ -3,14 +3,31 @@ Transform: AWS::Serverless-2016-10-31
 Description: >
   multithreaded statemachine serverless app stack
 
+Parameters:
+  ProjectName:
+    Type: String
+    Default: MTTSM
+  Stage:
+    Type: String
+    Default: dev
+    AllowedValues:
+      - dev
+      - update
+      - test
+      - prod
+    Description: stating env should be dev, test/update/prod are used with CICD only.
+  TargetS3:
+    Type: String
+    Default: targetS3
+
 Resources:
   StateMachine:
     Type: AWS::Serverless::StateMachine
     Properties:
-      Name: "Multithreaded Download StateMachine"
-      Role: arn:aws:iam::aws-account:role/service-role/StepFunctions-aemass-qe-prod-main-workflow-role-87643d68
+      Name: !Sub '${ProjectName}-${Stage}-Multithreaded-Download-StateMachine'
+      Role: arn:aws:iam::aws-account:role/service-role/StepFunctions-role
       DefinitionUri: statemachine/multithread_statemachine.json
-      DefinitionSubstitutions: # variables to pass to statemachine
+      DefinitionSubstitutions:
         DivideIntoPartsArn: !GetAtt DivideIntoParts.Arn
         DownloadPartOneArn: !GetAtt DownloadPartOne.Arn
         DownloadPartTwoArn: !GetAtt DownloadPartTwo.Arn
@@ -27,12 +44,12 @@ Resources:
         IteratorArn: !GetAtt Iterator.Arn
         MergeFileArn: !GetAtt MergeFile.Arn
 
-# Lambda
+# Lambdas
   DivideIntoParts:
     Type: AWS::Serverless::Function
     Properties:
-      FunctionName: DivideIntoParts
-      Role: arn:aws:iam::aws-account:role/aemass-qe-prod-lambda-basic-role
+      FunctionName: !Sub '${ProjectName}-${Stage}-DivideIntoParts'
+      Role: arn:aws:iam::aws-account:role/lambda-role
       CodeUri: functions/Divide-into-parts/
       Handler: lambda_function.lambda_handler
       Runtime: python3.8
@@ -43,5 +60,288 @@ Resources:
       Architectures:
         - x86_64
       Layers:
-        # Lambda Function Layer
-        - "arn:aws:lambda:us-east-1:aws-account:layer:python-layer:2"
+        - "arn:aws:lambda:us-east-1:aws-account:layer:my-layer:version"
+
+  DownloadPartOne:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub '${ProjectName}-${Stage}-DownloadPartOne'
+      Role: arn:aws:iam::aws-account:role/lambda-role
+      CodeUri: functions/Download-Parts/
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.8
+      MemorySize: 10240
+      EphemeralStorage:
+        Size: 2048
+      Timeout: 900
+      Architectures:
+        - x86_64
+      Layers:
+        - "arn:aws:lambda:us-east-1:aws-account:layer:my-layer:version"
+      Environment:
+        Variables:
+          PART: "1"
+          BUCKET: !Sub '${TargetS3}'
+          ETAG: "ETagA"
+
+  DownloadPartTwo:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub '${ProjectName}-${Stage}-DownloadPartTwo'
+      Role: arn:aws:iam::aws-account:role/lambda-role
+      CodeUri: functions/Download-Parts/
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.8
+      MemorySize: 10240
+      EphemeralStorage:
+        Size: 2048
+      Timeout: 900
+      Architectures:
+        - x86_64
+      Layers:
+        - "arn:aws:lambda:us-east-1:aws-account:layer:my-layer:version"
+      Environment:
+        Variables:
+          PART: "2"
+          BUCKET: !Sub '${TargetS3}'
+          ETAG: "ETagB"
+
+  DownloadPartThree:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub '${ProjectName}-${Stage}-DownloadPartThree'
+      Role: arn:aws:iam::aws-account:role/lambda-role
+      CodeUri: functions/Download-Parts/
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.8
+      MemorySize: 10240
+      EphemeralStorage:
+        Size: 2048
+      Timeout: 900
+      Architectures:
+        - x86_64
+      Layers:
+        - "arn:aws:lambda:us-east-1:aws-account:layer:my-layer:version"
+      Environment:
+        Variables:
+          PART: "3"
+          BUCKET: !Sub '${TargetS3}'
+          ETAG: "ETagC"
+
+  DownloadPartFour:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub '${ProjectName}-${Stage}-DownloadPartFour'
+      Role: arn:aws:iam::aws-account:role/lambda-role
+      CodeUri: functions/Download-Parts/
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.8
+      MemorySize: 10240
+      EphemeralStorage:
+        Size: 2048
+      Timeout: 900
+      Architectures:
+        - x86_64
+      Layers:
+        - "arn:aws:lambda:us-east-1:aws-account:layer:my-layer:version"
+      Environment:
+        Variables:
+          PART: "4"
+          BUCKET: !Sub '${TargetS3}'
+          ETAG: "ETagD"
+
+  DownloadPartFive:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub '${ProjectName}-${Stage}-DownloadPartFive'
+      Role: arn:aws:iam::aws-account:role/lambda-role
+      CodeUri: functions/Download-Parts/
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.8
+      MemorySize: 10240
+      EphemeralStorage:
+        Size: 2048
+      Timeout: 900
+      Architectures:
+        - x86_64
+      Layers:
+        - "arn:aws:lambda:us-east-1:aws-account:layer:my-layer:version"
+      Environment:
+        Variables:
+          PART: "5"
+          BUCKET: !Sub '${TargetS3}'
+          ETAG: "ETagE"
+
+  DownloadPartSix:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub '${ProjectName}-${Stage}-DownloadPartSix'
+      Role: arn:aws:iam::aws-account:role/lambda-role
+      CodeUri: functions/Download-Parts/
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.8
+      MemorySize: 10240
+      EphemeralStorage:
+        Size: 2048
+      Timeout: 900
+      Architectures:
+        - x86_64
+      Layers:
+        - "arn:aws:lambda:us-east-1:aws-account:layer:my-layer:version"
+      Environment:
+        Variables:
+          PART: "6"
+          BUCKET: !Sub '${TargetS3}'
+          ETAG: "ETagF"
+
+  DownloadPartSeven:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub '${ProjectName}-${Stage}-DownloadPartSeven'
+      Role: arn:aws:iam::aws-account:role/lambda-role
+      CodeUri: functions/Download-Parts/
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.8
+      MemorySize: 10240
+      EphemeralStorage:
+        Size: 2048
+      Timeout: 900
+      Architectures:
+        - x86_64
+      Layers:
+        - "arn:aws:lambda:us-east-1:aws-account:layer:my-layer:version"
+      Environment:
+        Variables:
+          PART: "7"
+          BUCKET: !Sub '${TargetS3}'
+          ETAG: "ETagG"
+
+  DownloadPartEight:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub '${ProjectName}-${Stage}-DownloadPartEight'
+      Role: arn:aws:iam::aws-account:role/lambda-role
+      CodeUri: functions/Download-Parts/
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.8
+      MemorySize: 10240
+      EphemeralStorage:
+        Size: 2048
+      Timeout: 900
+      Architectures:
+        - x86_64
+      Layers:
+        - "arn:aws:lambda:us-east-1:aws-account:layer:my-layer:version"
+      Environment:
+        Variables:
+          PART: "8"
+          BUCKET: !Sub '${TargetS3}'
+          ETAG: "ETagH"
+
+  DownloadPartNine:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub '${ProjectName}-${Stage}-DownloadPartNine'
+      Role: arn:aws:iam::aws-account:role/lambda-role
+      CodeUri: functions/Download-Parts/
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.8
+      MemorySize: 10240
+      EphemeralStorage:
+        Size: 2048
+      Timeout: 900
+      Architectures:
+        - x86_64
+      Layers:
+        - "arn:aws:lambda:us-east-1:aws-account:layer:my-layer:version"
+      Environment:
+        Variables:
+          PART: "9"
+          BUCKET: !Sub '${TargetS3}'
+          ETAG: "ETagI"
+
+  DownloadPartTen:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub '${ProjectName}-${Stage}-DownloadPartTen'
+      Role: arn:aws:iam::aws-account:role/lambda-role
+      CodeUri: functions/Download-Parts/
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.8
+      MemorySize: 10240
+      EphemeralStorage:
+        Size: 2048
+      Timeout: 900
+      Architectures:
+        - x86_64
+      Layers:
+        - "arn:aws:lambda:us-east-1:aws-account:layer:my-layer:version"
+      Environment:
+        Variables:
+          PART: "10"
+          BUCKET: !Sub '${TargetS3}'
+          ETAG: "ETagJ"
+
+  HttpRequestSize:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub '${ProjectName}-${Stage}-HttpRequestSize'
+      Role: arn:aws:iam::aws-account:role/lambda-role
+      CodeUri: functions/HTTP-Request-Size/
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.8
+      MemorySize: 10240
+      EphemeralStorage:
+        Size: 2048
+      Timeout: 900
+      Architectures:
+        - x86_64
+      Layers:
+        - "arn:aws:lambda:us-east-1:aws-account:layer:my-layer:version"
+
+  InitStatemachine:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub '${ProjectName}-${Stage}-InitStatemachine'
+      Role: arn:aws:iam::aws-account:role/lambda-role
+      CodeUri: functions/init-statemachine/
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.8
+      MemorySize: 10240
+      EphemeralStorage:
+        Size: 2048
+      Timeout: 900
+      Architectures:
+        - x86_64
+
+  Iterator:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub '${ProjectName}-${Stage}-Iterator'
+      Role: arn:aws:iam::aws-account:role/lambda-role
+      CodeUri: functions/Iterator/
+      Handler: index.handler
+      Runtime: nodejs14.x
+      MemorySize: 10240
+      EphemeralStorage:
+        Size: 2048
+      Timeout: 900
+      Architectures:
+        - x86_64
+      Layers:
+        - "arn:aws:lambda:us-east-1:aws-account:layer:my-layer:version"
+
+  MergeFile:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub '${ProjectName}-${Stage}-MergeFile'
+      Role: arn:aws:iam::aws-account:role/lambda-role
+      CodeUri: functions/Merge-File/
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.8
+      MemorySize: 10240
+      EphemeralStorage:
+        Size: 2048
+      Timeout: 900
+      Architectures:
+        - x86_64

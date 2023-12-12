@@ -1,16 +1,19 @@
-#Download Part1
-#multipartDownloadP1
-
-import json
+import os
 import requests
 import boto3
+
 client=boto3.client('s3')
 
 def lambda_handler(event, context):
-    
-    if(event['part1'] == -1):
+    PART = os.environ['PART']
+    PARTNUM = f"part{PART}"
+    CONTENTNUM = f"content{PART}"
+    TARGET_S3 = os.environ['BUCKET']
+    ETAG = os.environ['ETAG']
+
+    if(event[PARTNUM] == -1):
         return {
-            'content1': "part1 passed",
+            CONTENTNUM: f"{PARTNUM} passed",
             'fileName': event['fileName'],
             'fileType': event['fileType'],
             'scr': event['src'],
@@ -18,23 +21,23 @@ def lambda_handler(event, context):
         }
     else:
         
-        headers = {"Range": "bytes="+event['part1']}
+        headers = {"Range": "bytes="+event[PARTNUM]}
         response = requests.get(event['filePath'],headers=headers)
         
         part = client.upload_part(
-                Body=response.content,
-                Bucket='uploadfilelocation2',
-                Key=event['fileName']+"."+event['fileType'],
-                PartNumber=1,
-                UploadId=event['uploadID'],
+                Body = response.content,
+                Bucket = TARGET_S3,
+                Key = f"{event['fileName']}.{event['fileType']}", 
+                PartNumber = int(PART),
+                UploadId = event['uploadID'],
         )
 
         return {
-            'content1': "part1 succeeded",
+            CONTENTNUM: f"{PARTNUM} succeeded",
             'fileName': event['fileName'],
             'fileType': event['fileType'],
             'src': event['src'],
             'iterator':event['iterator'],
-            'ETagA':part['ETag'],
+            ETAG:part['ETag'],
             'uploadID':event['uploadID']
         }
