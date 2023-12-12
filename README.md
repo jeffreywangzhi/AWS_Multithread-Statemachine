@@ -6,18 +6,13 @@ A fast, scalable, multithreaded download statemachine based on AWS.
 * System Efficiency: **300 GB/ minute**
 * Scalability: scalable with additional threads (AWS Lambda Functions)
 ![statemachine_graph.png](src/statemachine/statemachine_graph.png)
-
 ## Prerequisites <a name = "prerequisites"></a> ##
-
 * Install AWS CLI : [installation guide](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
 * Install AWS SAM CLI : [installation guide](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/install-sam-cli.html)
 * AWS Account Credentials : [How to guide](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-envvars.html)
-
 ## Configuration <a name = "config"></a> ##
-
 * Replace each **aws-account** in template.yaml with your own AWS account number. (Ctrl + F, aws-account)
 * Config each **Role** in StepFunctions and Lambda Functions and grant corresponding permissions. (Ctrl + F, Role)
-
 ## Building <a name = "build"></a> ##
 * Build the sam application.
 ```bash
@@ -30,7 +25,6 @@ $ sam deploy --guided
 ```bash
 $ Parameter TargetS3 [targetS3]: your-s3-name
 ```
-
 ## Usage & Input Format
 ```json
 {
@@ -47,6 +41,8 @@ $ Parameter TargetS3 [targetS3]: your-s3-name
   ]
 }
 ```
+## Scalability <a name = "build"></a> ##
+With above solution, the system efficiency achieved 300 GB per minute. The scalable system could also be further refined by thresholding the lambda functions (threads).
 ## Who do I talk to <a name = "author"></a>
 - Jeffrey Wang (jeffrey.wanggg@gmail.com)
 
