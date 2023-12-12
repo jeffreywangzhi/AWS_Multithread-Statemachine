@@ -10,7 +10,6 @@ A fast, scalable, multithreaded download statemachine based on AWS.
 ## Prerequisites <a name = "prerequisites"></a> ##
 
 * Install AWS CLI : [installation guide](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
-* AWS CLI : [installation guide](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
 * AWS Account Credentials : [How to guide](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-envvars.html)
 
 ## Configuration <a name = "config"></a> ##
