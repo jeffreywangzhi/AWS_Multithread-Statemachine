@@ -10,7 +10,7 @@ A fast, scalable, multithreaded download statemachine based on AWS.
 * Install AWS CLI : [installation guide](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
 * Install AWS SAM CLI : [installation guide](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/install-sam-cli.html)
 * AWS Account Credentials : [How to guide](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-envvars.html)
-## Configuration <a name = "config"></a> ##
+## CloudFormation Template Configuration <a name = "config"></a> ##
 * Replace each **aws-account** in template.yaml with your own AWS account number. (Ctrl + F, aws-account)
 * Config each **Role** in StepFunctions and Lambda Functions and grant corresponding permissions. (Ctrl + F, Role)
 ## Building <a name = "build"></a> ##
