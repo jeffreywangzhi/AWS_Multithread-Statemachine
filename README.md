@@ -31,7 +31,7 @@ $ sam deploy --guided
 $ Parameter TargetS3 [targetS3]: your-s3-name
 ```
 
-## Input Format
+## Usage & Input Format
 ```json
 {
   "src": [
