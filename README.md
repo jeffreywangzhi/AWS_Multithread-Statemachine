@@ -1,5 +1,5 @@
 # AWS_Multithread-Statemachine
-A fast, efficient, multithreaded download statemachine based on AWS.
+A fast, scalable, multithreaded download statemachine based on AWS.
 1. 10 respective threads (lambda functions) download files from the file URL.
 2. 10 threads upload respective chunks to the target S3 bucket.
 3. Job finished.
