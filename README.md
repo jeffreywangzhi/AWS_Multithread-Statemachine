@@ -23,7 +23,7 @@ $ sam deploy --guided
 ```
 * Enter your target S3 name for storing the downloaded file.
 ```bash
-$ Parameter TargetS3 [targetS3]: your-s3-name
+$ Parameter TargetS3 [targetS3]: your-target-storage-s3-name
 ```
 ## Usage & Input Format
 ```json
