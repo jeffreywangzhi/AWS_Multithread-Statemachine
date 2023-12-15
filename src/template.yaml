@@ -2,7 +2,7 @@ AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: >
   multithreaded statemachine serverless app stack
-
+# user input parameters
 Parameters:
   ProjectName:
     Type: String
@@ -19,7 +19,7 @@ Parameters:
   TargetS3:
     Type: String
     Default: targetS3
-
+# statemachine resources
 Resources:
   StateMachine:
     Type: AWS::Serverless::StateMachine
