@@ -1,6 +1,3 @@
-#HTTP Request Size
-#0817FanoutFunction
-
 import json
 import requests
 import re
