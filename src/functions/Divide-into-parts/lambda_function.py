@@ -1,6 +1,3 @@
-#Divide into parts
-#0817UploadS3
-
 import json
 import base64
 import requests
