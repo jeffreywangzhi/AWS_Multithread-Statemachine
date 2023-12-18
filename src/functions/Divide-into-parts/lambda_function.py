@@ -1,8 +1,7 @@
 import json
-import base64
 import requests
-
 import boto3
+
 client=boto3.client('s3')
 
 def split_integer(m, n):
