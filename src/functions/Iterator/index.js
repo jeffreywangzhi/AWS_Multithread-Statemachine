@@ -1,6 +1,3 @@
-//Iterator
-//IteratorFunction
-
 exports.handler = function iterator (event, context, callback) {
     let index = event.iterator.index
     let step = event.iterator.step
