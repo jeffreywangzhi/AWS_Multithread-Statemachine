@@ -1,6 +1,3 @@
-#Merge File
-#multipartMerge
-
 import json
 import boto3
 
