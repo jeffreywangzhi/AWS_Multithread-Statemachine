@@ -3,7 +3,7 @@ A fast, scalable, multithreaded download statemachine based on AWS.
 1. 10+ respective threads (lambda functions) download files from target file URL.
 2. 10+ threads upload each chunk to the target S3 bucket.
 3. Chunk merged and job finished.
-* System Efficiency: **300 GB/ minute**
+* System Efficiency: **300+ GB/ minute**
 * Scalability: scalable with additional threads (AWS Lambda Functions)
 ![statemachine_graph.png](src/statemachine/statemachine_graph.png)
 ## Prerequisites <a name = "prerequisites"></a> ##
