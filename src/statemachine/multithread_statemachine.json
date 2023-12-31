@@ -1,5 +1,5 @@
 {
-  "Comment": "AWS Multithreaded Statemachine definition.json",
+  "Comment": "AWS Multithreaded Statemachine definition",
   "StartAt": "init statemachine",
   "States": {
     "init statemachine": {
