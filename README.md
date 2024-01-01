@@ -36,7 +36,7 @@ $ Parameter TargetS3 [targetS3]: your-target-storage-s3-name
       "filePath": "https://download-file-2.ext"
     },
     {
-      "filePath": "{other-file-paths}"
+      "filePath": "{other-file-paths.ext}"
     }
   ]
 }
