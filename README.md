@@ -42,7 +42,7 @@ $ Parameter TargetS3 [targetS3]: your-target-storage-s3-name
 }
 ```
 ## Scalability <a name = "build"></a> ##
-With above solution, the system efficiency achieved 300 GB per minute. The scalable system could also be further refined by thresholding the lambda functions (threads).
+With above solution, the system efficiency achieved 300+ GB per minute. The scalable system could also be further refined by thresholding the lambda functions (threads).
 ## Who do I talk to <a name = "author"></a>
 - Jeffrey Wang (jeffreywangzhi@gmail.com)
 
