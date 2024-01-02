@@ -313,7 +313,7 @@ Resources:
       Timeout: 900
       Architectures:
         - x86_64
-
+# Iterator Function
   Iterator:
     Type: AWS::Serverless::Function
     Properties:
