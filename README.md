@@ -14,7 +14,7 @@ A fast, scalable, multithreaded download statemachine based on AWS.
 * Replace each **aws-account** in template.yaml with your own AWS account number. (Ctrl + F, aws-account)
 * Config each **Role** in StepFunctions and Lambda Functions and grant corresponding permissions. (Ctrl + F, Role)
 ## Building <a name = "build"></a> ##
-* Build and deploy the sam application.
+* Build and deploy the sam application to AWS cloud.
 ```bash
 $ sam build
 ```
